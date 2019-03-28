@@ -46,7 +46,17 @@ wss.on("connection", (ws, req) => {
         ws.send("Got: "+msg);
 
         let data = JSON.parse(msg);
-        console.log(data);
+        console.log("request data: ", data);
+
+        if (typeof data.type === "string" && typeof data.args === "object") {
+            si[data.type].apply(null, data.args).then(res => {
+                ws.send(JSON.stringify(res, 0, " "));
+                console.log("fn feedback: ", res);
+            }).catch(e => {
+                ws.send(JSON.stringify(new Error(e), 0, " "));
+                console.log("fn feedback: ", e);
+            });
+        }
     });
 });
 
