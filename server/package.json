@@ -4,7 +4,9 @@
   "description": "Remote monitoring backend for edex-ui",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "xo",
+    "lint": "xo --fix",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,8 @@
     "ipaddr.js": "^1.9.0",
     "systeminformation": "^4.0.11",
     "ws": "^6.1.4"
+  },
+  "devDependencies": {
+    "xo": "^0.24.0"
   }
 }
